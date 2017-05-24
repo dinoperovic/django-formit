@@ -1,0 +1,52 @@
+{% if field_type == 'hiddeninput' %}
+  {# Render hidden field without formating. #}
+  {{ field }}
+{% else %}
+  <div class="field field-{{ field_type }}{% if is_required %} required{% endif %}{% if has_errors %} error{% endif %}">
+    {% if field_type == 'checkboxinput' %}
+      {# Render checkbox input. #}
+      {{ field }}
+      <label for="{{ field.id_for_label }}">{{ field_label }}</label>
+    {% elif field_type == 'radioselect' %}
+      {# Render radio select. #}
+      <label for="{{ field.id_for_label }}">{{ field_label }}</label>
+      <div class="group">
+        {% for radio in field %}
+          {{ radio.tag }}
+          <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+        {% endfor %}
+      </div>
+    {% else %}
+      {# Render field. #}
+      {% if show_label %}<label for="{{ field.id_for_label }}">{{ field_label }}</label>{% endif %}
+      {{ field }}
+    {% endif %}
+
+    {# Show help text. #}
+    {% if show_help_text and field_help_text %}<span class="help-text">{{ field_help_text|safe }}</span>{% endif %}
+
+    {# Show field errors. #}
+    {% if show_errors and has_errors %}
+      <ul class="errorlist">
+        {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% comment %}
+  Variables:
+  {{ field }}
+  {{ field_type }}
+  {{ field_label }}
+  {{ field_help_text }}
+
+  Helpers:
+  {{ is_required }}
+  {{ has_errors }}
+
+  Flags:
+  {{ show_label }}
+  {{ show_help_text }}
+  {{ show_errors }}
+{% endcomment %}

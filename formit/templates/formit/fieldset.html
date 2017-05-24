@@ -1,0 +1,18 @@
+{% load formit_tags %}
+
+{% if fields %}
+  {# Render fields. #}
+  {% for field in fields %}{% field field %}{% endfor %}
+{% else %}
+  {# Render hidden and visible fields separately. #}
+  {% for hidden in hidden_fields %}{% field hidden %}{% endfor %}
+  {% for field in visible_fields %}{% field field %}{% endfor %}
+{% endif %}
+
+{% comment %}
+  Variables:
+  {{ form }}
+  {{ fields }}
+  {{ visible_fields }}
+  {{ hidden_fields }}
+{% endcomment %}

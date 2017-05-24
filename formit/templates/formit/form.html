@@ -1,0 +1,48 @@
+{% load formit_tags %}
+
+<form action="{{ action }}" method="{{ method }}"{% if enctype %} enctype="{{ enctype }}"{% endif %}{% if novalidate %} novalidate{% endif %}>
+  {% if is_blank %}
+    {# Blank form block. #}
+    {{ block_content }}
+  {% else %}
+    {# CSRF token. #}
+    {% if show_csrf_token %}{% csrf_token %}{% endif %}
+
+    {# Show non field errors. #}
+    {% if show_non_field_errors and form.non_field_errors %}
+      <ul class="non-field-errors">
+        {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+
+    {# Either show rendered block, or display fieldset. #}
+    {% if is_block %}
+      {{ block_content }}
+    {% else %}
+      {% fieldset %}
+    {% endif %}
+
+    {# Show form button. #}
+    {% if show_button %}<button>{{ button }}</button>{% endif %}
+  {% endif %}
+</form>
+
+{% comment %}
+  Variables:
+  {{ form }}
+  {{ action }}
+  {{ method }}
+  {{ enctype }}
+  {{ button }}
+  {{ novalidate }}
+
+  Form block:
+  {{ is_blank }}
+  {{ is_block }}
+  {{ block_content }}
+
+  Flags:
+  {{ show_csrf_token }}
+  {{ show_non_field_errors }}
+  {{ show_button }}
+{% endcomment %}

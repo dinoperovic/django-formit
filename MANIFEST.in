@@ -1,0 +1,7 @@
+include AUTHORS
+include LICENSE.txt
+include README.md
+include setup.py
+recursive-include formit *.py
+recursive-include formit/templates *
+recursive-exclude * *.pyc
