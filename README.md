@@ -23,7 +23,7 @@ Install using *pip*:
 pip install django-formit
 ```
 
-Add `formit` to `INSTALLED_APPS`.
+Then add `formit` to `INSTALLED_APPS`.
 
 ## Usage
 
