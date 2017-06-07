@@ -15,7 +15,7 @@ class ContactForm(forms.Form):
 class FormitTest(TestCase):
     TEMPLATE = Template("""
         {% load formit_tags %}
-        {% form contact_form %}
+        {% form 'tests.test_formit.ContactForm' %}
         {% form_block contact_form %}{% fieldset %}{% endform_block %}
         {% fieldset fields=contact_form.visible_fields %}
         {% field contact_form.visible_fields.0 placeholder="Enter your name" %}
