@@ -32,8 +32,8 @@ To use **Formit** add your templates:
 ```django
 {% load formit_tags %}
 
-{# To render the form. #}
-{% form instance action="/" method="get" button="Send" %}
+{# To render the form pass in the string path or form instance. #}
+{% form 'contact.forms.ContactForm' action="/" method="get" button="Send" %}
 
 {# To render the form with custom contents. #}
 {% form_block instance %}

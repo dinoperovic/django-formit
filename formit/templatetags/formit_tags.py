@@ -5,6 +5,8 @@ from classytags.arguments import Argument, MultiKeywordArgument
 from classytags.core import Options
 from classytags.helpers import InclusionTag
 from django import template
+from django.utils.module_loading import import_string
+from django.utils.six import string_types
 
 from formit import settings as fs
 
@@ -22,6 +24,9 @@ class Form(InclusionTag):
 
     def get_context(self, context, form, attrs):
         flags = [x for x in attrs if attrs[x] is True]
+
+        if isinstance(form, string_types):
+            form = import_string(form)()
 
         context.update({
             'form': form,
