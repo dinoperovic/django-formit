@@ -5,6 +5,7 @@ from classytags.arguments import Argument, MultiKeywordArgument
 from classytags.core import Options
 from classytags.helpers import InclusionTag
 from django import template
+from django.utils.encoding import smart_text
 from django.utils.module_loading import import_string
 from django.utils.six import string_types
 
@@ -33,7 +34,7 @@ class Form(InclusionTag):
             'action': attrs.get('action', ''),
             'method': attrs.get('method', 'get'),
             'enctype': attrs.get('enctype', None),
-            'button': str(attrs.get('button', fs.DEFAULT_BUTTON)),
+            'button': smart_text(attrs.get('button', fs.DEFAULT_BUTTON)),
             'novalidate': 'novalidate' in flags or fs.DEFAULT_NOVALIDATE,
             'show_csrf_token': 'hide_csrf_token' not in flags,
             'show_non_field_errors': 'hide_non_field_errors' not in flags,
