@@ -33,7 +33,7 @@ setup(
     author_email='dino.perovic@gmail.com',
     name='django-formit',
     version=formit.__version__,
-    description='Smiple Django orm formating',
+    description='Simple Django form formating',
     long_description=convert('README.md', 'rst'),
     url='https://github.com/dinoperovic/django-formit',
     license='BSD License',
