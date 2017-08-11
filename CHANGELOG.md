@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.2
+
+- Fix: Explicitly set not block for non block tag.
+
 ## 0.1.1
 
 - Fix unicode by forcing text in a submit button.

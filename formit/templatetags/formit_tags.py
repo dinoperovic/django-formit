@@ -39,6 +39,9 @@ class Form(InclusionTag):
             'show_csrf_token': 'hide_csrf_token' not in flags,
             'show_non_field_errors': 'hide_non_field_errors' not in flags,
             'show_button': 'hide_button' not in flags,
+            # Explicitly set not block.
+            'is_block': False,
+            'block_content': None,
         })
         return context
 
