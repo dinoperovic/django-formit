@@ -41,6 +41,7 @@ class Form(InclusionTag):
             'show_button': 'hide_button' not in flags,
             # Explicitly set not block.
             'is_block': False,
+            'is_blank': False,
             'block_content': None,
         })
         return context
