@@ -4,14 +4,16 @@ from __future__ import absolute_import, unicode_literals
 from classytags.arguments import Argument, MultiKeywordArgument
 from classytags.core import Options
 from classytags.helpers import InclusionTag
-from django import template
+from django.template import Library
+from django.template.loader import select_template
 from django.utils.encoding import smart_text
 from django.utils.module_loading import import_string
 from django.utils.six import string_types
 
 from formit import settings as fs
 
-register = template.Library()
+
+register = Library()
 
 
 class Form(InclusionTag):
@@ -104,6 +106,16 @@ class Field(InclusionTag):
         Argument('field'),
         MultiKeywordArgument('attrs', required=False),
     )
+
+    def get_template(self, context, field, attrs):
+        """
+        Returns template based on fields widget. For example a field with
+        'TextInput` as widget will render 'formit/fields/textinput.html' with
+        fallback to 'formit/field.html' if template does not exist.
+        """
+        field_type = field.field.widget.__class__.__name__.lower()
+        template = select_template(['formit/fields/{0}.html'.format(field_type), self.template])
+        return template.template.name
 
     def get_context(self, context, field, attrs):
         flags = [x for x in attrs if attrs[x] is True]
