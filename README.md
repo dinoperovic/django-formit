@@ -75,6 +75,9 @@ Templates available to override in ``templates/formit/*``:
 * ``fieldset.html``
 * ``field.html``
 
+You can specify custom templates for each field widget by adding a template with lowercase class name of the widget.
+For example ``formit/fields/textinput.html`` will render a `TextInput` widget.
+
 
 [Django]: https://www.djangoproject.com/
 [django-classy-tags]: https://github.com/ojii/django-classy-tags
