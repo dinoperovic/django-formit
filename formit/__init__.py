@@ -14,6 +14,6 @@ Release logic:
  9. twine upload dist/django-formit-<version>.tar.gz
 10. Done!
 """
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 default_app_config = 'formit.apps.FormitConfig'
